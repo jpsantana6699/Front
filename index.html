@@ -14,8 +14,13 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Prata&family=Unbounded:wght@200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="./styles.css">
-    <script src="./script.js" defer></script>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/interface-principal.css">
+    <link rel="stylesheet" href="./css/resultado-modal.css">
+    <link rel="stylesheet" href="./css/treino-control-card.css">
+    <link rel="stylesheet" href="./css/treinos/treino-mira.css">
+    <link rel="stylesheet" href="./css/treinos/treino-movimento.css">
+    <link rel="stylesheet" href="./css/treinos/treino-controle.css">
 </head>
 
 <body>
@@ -27,7 +32,7 @@
         </header>
         <section class="app__section-banner-container">
             <h1 class="app__title">
-                25 minutos de treino de mira.<br>
+                5 minutos de treino de mira.<br>
                 <strong class="app__title-strong">Foco total. Disparos perfeitos.</strong>
             </h1>
             <figure class="app__image-figure">
@@ -41,10 +46,10 @@
                         <button data-contexto="foco" class="app__card-button app__card-button--foco active">Mira</button>
                     </li>
                     <li class="app__card-list-item">
-                        <button data-contexto="short" class="app__card-button app__card-button--curto">Movimentação</button>
+                        <button data-contexto="descanso-curto" class="app__card-button app__card-button--curto">Movimentação</button>
                     </li>
                     <li class="app__card-list-item">
-                        <button data-contexto="long" class="app__card-button app__card-button--longo">Controle</button>
+                        <button data-contexto="descanso-longo" class="app__card-button app__card-button--longo">Controle</button>
                     </li>
                 </ul>
                 <div id="timer" class="app__card-timer"></div>
@@ -71,22 +76,111 @@
         </section>
 
         <section id="treino-mira" class="treino-mira hidden">
-            <div class="treino-mira__info">
-                <div class="treino-mira__stats">
-                    <span>Pontos: <span id="pontos">0</span></span>
-                    <span>Tempo: <span id="tempo-treino">25:00</span></span>
-                    <span>Precisão: <span id="precisao">100%</span></span>
-                </div>
-                <div class="treino-mira__controles">
-                    <button id="pausar-treino" class="treino-mira__pausar">Pausar</button>
-                    <button id="sair-treino" class="treino-mira__sair">Sair</button>
-                    <label class="treino-mira__musica">
-                        <input type="checkbox" id="musica-treino">
-                        <span>Música</span>
-                    </label>
+            <!-- Card de controle compacto -->
+            <div class="treino-mira__control-card">
+                <div class="treino-card-timer" id="timer-treino-display">25:00</div>
+                <label class="treino-card-music-toggle">
+                    <input type="checkbox" id="musica-treino-header">
+                    <div class="treino-card-music-switch"></div>
+                    <span class="treino-card-music-icon">♪</span>
+                </label>
+                <button class="treino-card-pause-button" id="pause-treino-mira">
+                    <img src="./imagens/excluir.svg" alt="Pausar">
+                </button>
+            </div>
+            
+            <div class="treino-mira__stats-hidden">
+                <span id="pontos">0</span>
+                <span id="tempo-treino">25:00</span>
+                <span id="precisao">100%</span>
+            </div>
+            
+            <div class="treino-mira__area" id="area-treino">
+            </div>
+            
+            <div id="resultado-modal-mira" class="resultado-modal-mira hidden">
+                <div class="resultado-modal-mira__content">
+                    <h2 class="resultado-modal-mira__title">Treino de Mira Finalizado!</h2>
+                    <div class="resultado-modal-mira__stats">
+                        <div class="resultado-stat-mira">
+                            <span class="resultado-stat-mira__label">Pontos</span>
+                            <span class="resultado-stat-mira__value" id="resultado-pontos-mira">0</span>
+                        </div>
+                        <div class="resultado-stat-mira">
+                            <span class="resultado-stat-mira__label">Precisão</span>
+                            <span class="resultado-stat-mira__value" id="resultado-precisao-mira">100%</span>
+                        </div>
+                        <div class="resultado-stat-mira">
+                            <span class="resultado-stat-mira__label">Alvos Atingidos</span>
+                            <span class="resultado-stat-mira__value" id="resultado-alvos-mira">0/0</span>
+                        </div>
+                        <div class="resultado-stat-mira">
+                            <span class="resultado-stat-mira__label">Tempo Médio</span>
+                            <span class="resultado-stat-mira__value" id="resultado-tempo-medio-mira">0s</span>
+                        </div>
+                    </div>
+                    <div class="resultado-modal-mira__avaliacao">
+                        <div class="resultado-avaliacao-mira__nota" id="resultado-nota-mira">A</div>
+                        <div class="resultado-avaliacao-mira__texto" id="resultado-texto-mira">Excelente desempenho!</div>
+                    </div>
+                    <button id="resultado-continuar-mira" class="resultado-modal-mira__button">Continuar</button>
                 </div>
             </div>
-            <div class="treino-mira__area" id="area-treino">
+        </section>
+
+        <section id="treino-movimento" class="treino-movimento hidden">
+            <div class="treino-movimento__control-card">
+                <div class="treino-card-timer" id="timer-movimento-display">15:00</div>
+                <label class="treino-card-music-toggle">
+                    <input type="checkbox" id="musica-movimento-header">
+                    <div class="treino-card-music-switch"></div>
+                    <span class="treino-card-music-icon">♪</span>
+                </label>
+                <button class="treino-card-pause-button" id="pause-treino-movimento">
+                    <img src="./imagens/pause.png" alt="Pausar">
+                </button>
+            </div>
+            
+            <div class="treino-movimento__area" id="area-movimento">
+            </div>
+            
+            <div class="movimento-stats">
+                <span>Pontos: 0</span>
+                <span>Precisão: 100%</span>
+                <span>Sequências: 0</span>
+            </div>
+        </section>
+
+        <section id="treino-controle" class="treino-controle hidden">
+            <!-- Card de controle compacto -->
+            <div class="treino-controle__control-card">
+                <div class="treino-card-timer" id="timer-controle-display">8:00</div>
+                <label class="treino-card-music-toggle">
+                    <input type="checkbox" id="musica-controle-header">
+                    <div class="treino-card-music-switch"></div>
+                    <span class="treino-card-music-icon">♪</span>
+                </label>
+                <button class="treino-card-pause-button" id="pause-treino-controle">
+                    <img src="./imagens/pause.png" alt="Pausar">
+                </button>
+            </div>
+            
+            <div class="treino-controle__area" id="area-controle">
+                <div class="spray-pattern"></div>
+            </div>
+            
+            <div class="precisao-indicator">
+                <h3>Precisão</h3>
+                <div class="precisao-bar">
+                    <div class="precisao-bar__fill"></div>
+                </div>
+            </div>
+            
+            <!-- Stats do controle -->
+            <div class="controle-stats">
+                <span>Pontos: 0</span>
+                <span>Precisão: 100%</span>
+                <span>Padrões: 0</span>
             </div>
         </section>
 
@@ -97,6 +191,11 @@
         </footer>
     </main>
 
+    <!-- Scripts Modulares -->
+    <script src="./js/main.js"></script>
+    <script src="./js/treinos/treino-mira.js"></script>
+    <script src="./js/treinos/treino-movimento.js"></script>
+    <script src="./js/treinos/treino-controle.js"></script>
 </body>
 
 </html>
