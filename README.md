@@ -60,26 +60,6 @@ Todos os treinos incluem um **card de controle** no canto superior direito com:
 - 🔊 **Efeitos sonoros**: Play, pause e finalização
 - �️ **Controle integrado**: Toggle de música funcional em todos os treinos
 
-### 📸 **Screenshots Necessários**
-Para completar a documentação, você deve capturar as seguintes imagens e salvá-las na pasta `screenshots/`:
-
-1. **`banner-principal.png`** - Interface principal com seleção de treinos
-2. **`treino-mira.png`** - Tela do treino de mira com card de controle visível
-3. **`treino-movimento.png`** - Treino de movimento com personagem WASD
-4. **`treino-controle.png`** - Treino de controle (placeholder até implementação)
-5. **`card-controle.png`** - Close-up do card de controle compacto
-6. **`interface-navegacao.png`** - Navegação entre modos de treino
-7. **`tela-resultados.png`** - Modal de resultados com estatísticas
-8. **`paleta-cores.png`** - Demonstração das cores de cada modo
-9. **`responsividade.png`** - Montagem mostrando desktop/tablet/mobile
-10. **`developer-profile.png`** - Foto ou avatar para seção do desenvolvedor
-
-📝 **Dicas para captura:**
-- Use resolução mínima de 1920x1080 para desktop
-- Capture em momento de ação (alvos visíveis, timers ativos)
-- Mostre o card de controle sempre visível no canto superior direito
-- Para responsividade, use ferramentas do navegador (F12 → Device Mode)
-
 ## 🚀 Tecnologias Utilizadas
 
 - **HTML5**: Estrutura semântica moderna com seções organizadas
